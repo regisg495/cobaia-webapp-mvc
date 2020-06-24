@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<style type="text/css">
+form.login {
+	max-width: 350px;
+	margin: 0 auto;
+	padding-top: 2em;
+}
+</style>
+<body>
+	
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#">K0B414</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cursos">Cursos</a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+      	{% if usuario %}
+      	<span>
+      		<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+      		{{ usuario }}
+      	</span>
+      	<a href="/logout" class="btn btn-outline-danger my-2 my-sm-0 mr-1">
+        	Logout
+        </a>
+      	{% else %}
+        <a href="/login" class="btn btn-outline-success my-2 my-sm-0 mr-1">
+        	Login
+        </a>
+        <a href="/registro" class="btn btn-outline-info my-2 my-sm-0">
+        	Registrar-se
+        </a>
+        {% endif %}
+      </form>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    {% if erro is not null and not erro.empty %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Erro:</strong> {{erro}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+
+    {% if info is not null and not info.empty %}
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{info}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+
+    <form method="post" action="/login" class="form login">
+			<div class="form-group">
+				<label for="email">E-mail:</label> 
+				<input type="text" id="email" autofocus="autofocus"
+					name="email" class="form-control" maxlength="100" size="60">
+			</div>
+			<div class="form-group">
+				<label for="senha">Senha:</label> 
+				<input type="password" id="senha"
+					name="senha" class="form-control" maxlength="50" size="50">
+			</div>
+			<button type="submit" class="btn btn-large btn-outline-primary">
+				<i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp; Login
+			</button>
+			<a href="/registro" style="margin-left: 2emx">Cadastre-se</a>
+		</form>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

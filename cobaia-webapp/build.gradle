@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // bibliotecas utilitárias comuns
+    compile 'com.google.guava:guava:22.0'
+    compile 'commons-io:commons-io:2.4'
+    // para criptografia (md5) de senhas
+    compile 'commons-codec:commons-codec:1.4'
+    // microframework web spark java
+    compile 'com.sparkjava:spark-debug-tools:0.5'
+    compile 'com.sparkjava:spark-template-pebble:2.7.1'
+    compile 'com.sparkjava:spark-core:2.7.1'
+    compile 'org.slf4j:slf4j-simple:1.7.21'
+    // para enviar e-mail
+    compile 'org.apache.commons:commons-email:1.5'
+    compile 'javax.activation:activation:1.1.1'
+    // para bancos sqlite
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.8.11.2'
+    // testagem
+    testCompile 'junit:junit:4.12'
+}
+
+mainClassName = 'cobaia.Main'

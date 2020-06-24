@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>K0B414</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="js/holder.min.js"></script>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#">K0B414</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Cursos <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0">
+        {% if usuario is not null %}
+        <a class="btn btn-primary mr-3" href="/perfil">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          {{ usuario }}
+        </a>
+        <a href="/logout" class="btn btn-outline-danger my-2 my-sm-0 mr-1">
+          Logout
+        </a>
+        {% else %}
+        <a href="/login" class="btn btn-outline-success my-2 my-sm-0 mr-1">
+          Login
+        </a>
+        <a href="/registro" class="btn btn-outline-info my-2 my-sm-0">
+          Registrar-se
+        </a>
+        {% endif %}
+      </form>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    {% if erro is not null and not erro.empty %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Erro:</strong> {{erro}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+
+    {% if info is not null and not info.empty %}
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{info}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+
+    <h3>{{curso.nome}}</h3>
+
+    {% if usuario is not null %}
+      <a href="/inscrever/{{curso.id}}" class="btn btn-outline-success">
+        Inscrever-se
+      </a>
+    {% endif %}
+
+		<hr>
+
+    <div class="row">
+    	<div class="col-md-3">{{curso.vagas - curso.inscritos}} vagas disponíveis de {{curso.vagas}}</div>
+    	<div class="col-md-3">{{curso.cargaHoraria}} horas</div>
+    	<div class="col-md-3">Início em {{curso.dataInicio}}</div>
+    	<div class="col-md-3">
+    		{{curso.dias}} das {{curso.horarioInicio}} às {{curso.horarioTermino}}
+    	</div>
+    </div>
+
+    <br>
+
+    <div class="row description">
+    	<div class="col-md-6 col-xs-12">    		
+    		<h4>Resumo</h4>
+    	</div>
+    	<div class="col-md-6 col-xs-12">    		
+	    	<p>{{curso.resumo}}</p>
+	  	</div>
+    </div>
+
+    <br>
+
+    <div class="row description">
+    	<div class="col-md-6 col-xs-12">
+    		<h4>Programa completo</h4>
+    	</div>
+    	<div class="col-md-6 col-xs-12">
+    		<p>{{curso.programa}}</p>
+    	</div>
+    </div>
+    
+  </main>
+
+</body>
+</html>
